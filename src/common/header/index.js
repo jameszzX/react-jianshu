@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import {
   HeaderWrapper,
@@ -12,16 +12,9 @@ import {
 } from "./style";
 import { CSSTransition } from "react-transition-group";
 
-class Header extends Component {
-  constructor(props) {
-    super(props);
-    this.handleInputFocus = this.handleInputFocus.bind(this);
-    this.handleInputBlur = this.handleInputBlur.bind(this);
-  }
-
-  render() {
-    return (
-      <HeaderWrapper>
+const Header = (props) =>{
+  return (
+    <HeaderWrapper>
         <Logo />
         <Nav>
           <NavItem className="left active">首页</NavItem>
@@ -33,16 +26,16 @@ class Header extends Component {
           <SearchWrapper>
             <CSSTransition
               classNames="slide"
-              in={this.props.focused}
+              in={props.focused}
               timeout={200}
             >
               <NavSearch
-                onFocus={this.handleInputFocus}
-                onBlur={this.handleInputBlur}
-                className={this.props.focused ? "focused" : ""}
+                onFocus={props.handleInputFocus}
+                onBlur={props.handleInputBlur}
+                className={props.focused ? "focused" : ""}
               />
             </CSSTransition>
-            <i className={this.props.focused ? "focused iconfont" : "iconfont"}>
+            <i className={props.focused ? "focused iconfont" : "iconfont"}>
               &#xe64d;
             </i>
           </SearchWrapper>
@@ -54,20 +47,7 @@ class Header extends Component {
           <Button className="reg">注册</Button>
         </Addition>
       </HeaderWrapper>
-    );
-  }
-
-  handleInputFocus() {
-    this.setState({
-      focused: true
-    });
-  }
-
-  handleInputBlur() {
-    this.setState({
-      focused: false
-    });
-  }
+  )
 }
 
 const mapStateToProps = state => {
@@ -77,7 +57,20 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => {
-  return {};
+  return {
+    handleInputFocus(){
+      const action = {
+        type: 'search_focus'
+      }
+      dispatch(action)
+    },
+    handleInputBlur(){
+      const action = {
+        type: 'search_blur'
+      }
+      dispatch(action)
+    }
+  };
 };
 
 export default connect(
