@@ -85,6 +85,7 @@ export const RecommendWrapper = styled.div`
 `;
 
 export const RecommendItem = styled.div`
+  margin-bottom: 6px;
   width: 280px;
   height: 50px;
   background: url(${props => props.imgUrl});
