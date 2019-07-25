@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { connect } from "react-redux";
 import Topic from "./component/Topic";
 import List from "./component/List";
@@ -7,9 +7,16 @@ import Writer from "./component/Writer";
 import { actionCreators } from "./store";
 import { HomeWrapper, HomeLeft, HomeRight, BackTop } from "./style";
 
-class Home extends Component {
+class Home extends PureComponent {
   handleScrollTop() {
-    window.scrollTo(0, 0);
+    (function smoothscroll() {
+      var currentScroll =
+        document.documentElement.scrollTop || document.body.scrollTop;
+      if (currentScroll > 0) {
+        window.requestAnimationFrame(smoothscroll);
+        window.scrollTo(0, currentScroll - currentScroll / 5);
+      }
+    })();
   }
 
   render() {
@@ -29,9 +36,12 @@ class Home extends Component {
           <Recommend />
           <Writer />
         </HomeRight>
-        {showScroll ? (
-          <BackTop onClick={this.handleScrollTop}>回到顶部</BackTop>
-        ) : null}
+        <BackTop
+          className={showScroll ? "top" : ""}
+          onClick={this.handleScrollTop}
+        >
+          ^Top
+        </BackTop>
       </HomeWrapper>
     );
   }

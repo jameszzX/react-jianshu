@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { connect } from "react-redux";
-import { TopicWrapper, TopicItem } from "../style";
+import { TopicWrapper, TopicItem, TopicMore } from "../style";
 
-class Topic extends Component {
+class Topic extends PureComponent {
   render() {
     const { list } = this.props;
     return (
@@ -15,6 +15,7 @@ class Topic extends Component {
             </TopicItem>
           );
         })}
+        <TopicMore>更多热门专题 ></TopicMore>
       </TopicWrapper>
     );
   }
