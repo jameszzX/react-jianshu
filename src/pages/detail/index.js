@@ -1,6 +1,7 @@
 import React, { PureComponent } from "react";
 import { connect } from "react-redux";
 import { actionCreators } from "./store";
+import { withRouter } from "react-router-dom";
 import { DetailWrapper, DetailHeader, DetailContent } from "./style";
 
 class Detail extends PureComponent {
@@ -33,4 +34,4 @@ const mapDispatch = dispatch => ({
 export default connect(
   mapState,
   mapDispatch
-)(Detail);
+)(withRouter(Detail));
