@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const HomeWrapper = styled.div`
   overflow: hidden;
+  padding-top: 58px;
   width: 960px;
   margin: 0 auto;
 `;

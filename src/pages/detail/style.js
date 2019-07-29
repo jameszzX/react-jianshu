@@ -4,6 +4,7 @@ export const DetailWrapper = styled.div`
   overflow: hidden;
   width: 620px;
   margin: 0 auto;
+  padding-top: 58px;
   padding-bottom: 100px;
 `;
 
